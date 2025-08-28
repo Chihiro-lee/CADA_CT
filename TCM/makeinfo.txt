@@ -1,0 +1,75 @@
+#Copying the asm files from srcdir or app
+Creating ASM directories and copying .s files
+Makefile:99: recipe for target 'build_folders' failed
+Creating ASM file: "app/asm/main.s"
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"./app/src" -I"./core/src" -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -Wall -mlarge -mcode-region=none -mdata-region=none -ffixed-R4 -ffixed-R5 -ffixed-R6  -ffixed-R7 -ffixed-R8 -S -o"app/asm/main.s" "app/src/main.c"
+Finished creating: "app/asm/main.s"
+ 
+Checking for the presence of unsafe instructions in ./app/asm/main.s 
+Reject is 0
+make deployable.out REJECT=0 OBJ_FILES="./app/obj/main.o"
+make[1]: Entering directory '/home/lee/0411PISTIS _modified/TCM'
+mkdir ./app/obj
+Replacing unsafe instructions
+#@cp main.s old_main.s
+#backup the old asm file
+Instructions replaced
+Creating "app/obj/main.o" by building file: "app/asm/main.s"
+Invoking: GNU Compiler
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--no-relax -Wl,--disable-sec-transformation -o"app/obj/main.o" "app/asm/main.s"
+Finished building: "app/asm/main.s" --> "app/obj/main.o" created
+ 
+Creating ASM file: "core/asm/core.s"
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -S -ffunction-sections -o"core/asm/core.s" "core/src_compile/core.c"
+Finished creating: "core/asm/core.s"
+ 
+Creating "core/obj/core.o" by building file: "core/asm/core.s"
+Invoking: GNU Compiler
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -o"core/obj/core.o" "core/asm/core.s"
+Finished building: "core/asm/core.s" --> "core/obj/core.o" created
+ 
+Creating "core/obj/virt_fun.o" by building file: "core/asm/virt_fun.s"
+Invoking: GNU Compiler
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -o"core/obj/virt_fun.o" "core/asm/virt_fun.s"
+Finished building: "core/asm/virt_fun.s" --> "core/obj/virt_fun.o" created
+ 
+Creating ASM file: "core/asm/secureUpdate.s"
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -S -ffunction-sections -o"core/asm/secureUpdate.s" "core/src_compile/secureUpdate.c"
+Finished creating: "core/asm/secureUpdate.s"
+ 
+Creating "core/obj/secureUpdate.o" by building file: "core/asm/secureUpdate.s"
+Invoking: GNU Compiler
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -o"core/obj/secureUpdate.o" "core/asm/secureUpdate.s"
+Finished building: "core/asm/secureUpdate.s" --> "core/obj/secureUpdate.o" created
+ 
+Creating "core/obj/protected_isr.o" by building file: "core/asm/protected_isr.s"
+Invoking: GNU Compiler
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -o"core/obj/protected_isr.o" "core/asm/protected_isr.s"
+Finished building: "core/asm/protected_isr.s" --> "core/obj/protected_isr.o" created
+ 
+Creating ASM file: "core/asm/secureContextSwitch.s"
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -S -ffunction-sections -o"core/asm/secureContextSwitch.s" "core/src_compile/secureContextSwitch.c"
+Finished creating: "core/asm/secureContextSwitch.s"
+ 
+Creating "core/obj/secureContextSwitch.o" by building file: "core/asm/secureContextSwitch.s"
+Invoking: GNU Compiler
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -o"core/obj/secureContextSwitch.o" "core/asm/secureContextSwitch.s"
+Finished building: "core/asm/secureContextSwitch.s" --> "core/obj/secureContextSwitch.o" created
+ 
+Creating ASM file: "core/asm/secureSend.s"
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -S -ffunction-sections -o"core/asm/secureSend.s" "core/src_compile/secureSend.c"
+Finished creating: "core/asm/secureSend.s"
+ 
+Creating "core/obj/secureSend.o" by building file: "core/asm/secureSend.s"
+Invoking: GNU Compiler
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -c -mmcu=msp430f5529 -mhwmult=f5series -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -I"." -I"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/msp430-elf/include" -O3 -w -mlarge -mcode-region=none -mdata-region=none -Wl,--gc-sections -Wl,--no-relax -Wl,--disable-sec-transformation -o"core/obj/secureSend.o" "core/asm/secureSend.s"
+Finished building: "core/asm/secureSend.s" --> "core/obj/secureSend.o" created
+ 
+USING OBJ: ./app/obj/main.o
+The application is safe
+Building target: "deployable.out"
+Invoking: GNU Linker
+../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/bin/msp430-elf-gcc-9.2.0 -mhwmult=f5series -mmcu=msp430f5529 -O3 -w -mcode-region=none -mdata-region=none -mlarge -Wl,-Map,"deployable.map" -Wl,--gc-sections -L"../toolchain/compiler/msp430-gcc-9.2.0.50_linux64/../include_gcc" -Wl,--no-relax -Wl,--disable-sec-transformation  -T"../toolchain/linkerScriptWithCore.ld" -Wl,--start-group -lgcc -lc -Wl,--end-group -o"deployable.out" ./app/obj/main.o -Wl,--whole-archive ./core/obj/core.o ./core/obj/virt_fun.o ./core/obj/secureUpdate.o ./core/obj/protected_isr.o ./core/obj/secureContextSwitch.o ./core/obj/secureSend.o -Wl,-no-whole-archive
+Finished building target: "deployable.out"
+ 
+make[1]: Leaving directory '/home/lee/0411PISTIS _modified/TCM'

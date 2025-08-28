@@ -1,0 +1,2691 @@
+	.file	"core.c"
+.text
+	.section	.tcm:code,"ax",@progbits
+	.balign 2
+	.global	launchAppCode
+	.type	launchAppCode, @function
+launchAppCode:
+; start of function
+; attributes: 
+; framesize_regs:     0
+; framesize_locals:   0
+; framesize_outgoing: 0
+; framesize:          0
+; elim ap -> fp       4
+; elim fp -> sp       0
+; saved regs:(none)
+	; start of prologue
+	; end of prologue
+	ANDX.B	#127, &PBOUT_H
+	BICX.B	#1, &PAOUT_L
+	MOVX.W	#-23280, &FCTL3
+ ; 162 "core/src_compile/core.c" 1
+	nop { eint { nop
+ ; 0 "" 2
+ ; 164 "core/src_compile/core.c" 1
+	mov #0x43ff, r1
+ ; 0 "" 2
+ ; 165 "core/src_compile/core.c" 1
+	mov #0, r8
+ ; 0 "" 2
+	MOVX.W	&key_set, &address_key
+	MOVX.W	&key_set+2, &address_key+2
+	MOVX.W	#0, &address_xor
+	MOVX.W	#0, &address_xor+2
+	MOVX.W	#0, &address_sr
+	MOVX.W	#0, &address_sr+2
+	MOVX.W	#0, &key_cnt
+	MOVX.W	#0, &verify_count
+ ; 184 "core/src_compile/core.c" 1
+	
+	BR #main
+ ; 0 "" 2
+	; start of epilogue
+	RETA
+	.size	launchAppCode, .-launchAppCode
+	.balign 2
+	.global	isMoveToReg
+	.type	isMoveToReg, @function
+isMoveToReg:
+; start of function
+; attributes: 
+; framesize_regs:     0
+; framesize_locals:   0
+; framesize_outgoing: 0
+; framesize:          0
+; elim ap -> fp       4
+; elim fp -> sp       0
+; saved regs:(none)
+	; start of prologue
+	; end of prologue
+	AND	#0xff, R14
+	MOV.W	R12, R13
+	AND.W	#-3968, R13
+	CMP.W	#16384, R13 { JEQ	.L11
+	MOV.W	R12, R13
+	AND.W	#-4096, R13
+	BIT.W	#-4096, R12 { JEQ	.L8
+	CMP.W	#4096, R13 { JNE	.L9
+	RPT	#8 { RRUX.W	R12
+.L11:
+	AND.B	#15, R12
+	MOV.B	#1, R13
+	CMP.W	R14, R12 { JEQ	.L7
+	MOV.B	#0, R13
+.L7:
+	MOV.B	R13, R12
+	; start of epilogue
+	RETA
+.L8:
+	MOV.B	#1, R12
+	; start of epilogue
+	RETA
+.L9:
+	MOV.B	#0, R12
+	; start of epilogue
+	RETA
+	.size	isMoveToReg, .-isMoveToReg
+	.balign 2
+	.global	cfiCheck
+	.type	cfiCheck, @function
+cfiCheck:
+; start of function
+; attributes: 
+; framesize_regs:     20
+; framesize_locals:   0
+; framesize_outgoing: 0
+; framesize:          20
+; elim ap -> fp       24
+; elim fp -> sp       0
+; saved regs: R4 R5 R6 R9 R10
+	; start of prologue
+	PUSHM.A	#2, R10
+	PUSHM.A	#3, R6
+	; end of prologue
+	CMP.W	#-1024, R12 { JEQ	.L118
+	CMP.W	#-998, R12 { JEQ	.L118
+	CMP.W	#-972, R12 { JEQ	.L118
+	CMP.W	#-894, R12 { JEQ	.L118
+	CMP.W	#-816, R12 { JEQ	.L129
+	CMP.W	#-744, R12 { JEQ	.L118
+	CMP.W	#-672, R12 { JEQ	.L130
+	CMP.W	#-600, R12 { JEQ	.L118
+	MOV.W	R12, R14
+	AND.W	#-65, R14
+	CMP.W	#-580, R14 { JEQ	.L131
+.L71:
+	CMP.W	#-558, R12 { JEQ	.L123
+	CMP.W	#-538, R12 { JNE	.L73
+.L123:
+	CMP.W	#0, R13 { JNE	.L73
+.L61:
+	MOV.B	#0, R12
+	; start of epilogue
+	POPM.A	#3, r6
+	POPM.A	#2, r10
+	RETA
+.L118:
+	CMP.W	#0, R13 { JEQ	.L61
+	MOV.W	R12, R14
+.L73:
+	CMP.W	#-496, R14 { JEQ	.L132
+.L74:
+	CMP.W	#-474, R12 { JEQ	.L133
+.L75:
+	CMP.W	#-454, R14 { JEQ	.L134
+.L76:
+	CMP.W	#-412, R12 { JEQ	.L135
+.L77:
+	CMP.W	#-370, R14 { JEQ	.L136
+.L78:
+	CMP.W	#-348, R12 { JEQ	.L127
+	CMP.W	#-328, R12 { JEQ	.L127
+	MOV.W	R12, R14
+	BIC.W	#4, R14
+	CMP.W	#-238, R14 { JEQ	.L137
+.L81:
+	CMP.W	#-230, R12 { JEQ	.L127
+	CMP.W	#0, R13 { JNE	.L82
+	MOV.W	#-15362, R14
+	CMP.W	R12, R14 { JLO	.L82
+	MOVX.B	&counterBuffAlwDst, R14
+	MOVX.W	&counterAlwDst, R9
+	ADD.W	#-1, R9
+	ADD.W	R9, R9
+	RPT	#9 { RLAX.W	R14
+	ADD.W	R14, R9
+	CMP.W	#0, R9 { JL	.L82
+	MOV.W	R13, R6
+.L37:
+	MOV.W	R6, R13
+	ADD.W	R9, R13
+	RRUM.W	#1, R13
+	BIC.W	#1, R13
+	MOVX.W	&cfiDataHolder, R14
+	MOVX.W	&cfiDataHolder+2, R15
+	MOV.W	R13,R4 { MOV.W	#0,R5
+	MOV.W	R4, R10
+	ADD	R14, R10 ; cy
+	MOV.W	R5, R11
+	ADDC	R15, R11
+	PUSH.W	R11 { PUSH.W	R10 { POPM.A	#1, R14
+	MOV.W	@R14, R14
+	CMP.W	R14, R12 { JEQ	.L61
+	CMP.W	R12, R14 { JHS	.L35
+	MOV.W	R13, R6
+	ADD.W	#2, R6
+	CMP.W	R6, R9 { JGE	.L37
+.L82:
+	MOV.B	#1, R12
+.L138:
+	; start of epilogue
+	POPM.A	#3, r6
+	POPM.A	#2, r10
+	RETA
+.L129:
+	CMP.W	#0, R13 { JEQ	.L61
+	MOV.W	#-880, R14
+	BRA	#.L73
+.L132:
+	CMP.W	#0, R13 { JNE	.L74
+	BRA	#.L61
+.L35:
+	MOV.W	R13, R9
+	ADD.W	#-2, R9
+	CMP.W	R6, R9 { JGE	.L37
+	MOV.B	#1, R12
+	BRA	#.L138
+.L130:
+	CMP.W	#0, R13 { JEQ	.L61
+	MOV.W	#-736, R14
+	BRA	#.L73
+.L131:
+	CMP.W	#0, R13 { JNE	.L71
+	BRA	#.L61
+.L133:
+	CMP.W	#0, R13 { JNE	.L75
+	BRA	#.L61
+.L134:
+	CMP.W	#0, R13 { JNE	.L76
+	BRA	#.L61
+.L127:
+	CMP.W	#0, R13 { JEQ	.L61
+	MOV.B	#1, R12
+	BRA	#.L138
+.L135:
+	CMP.W	#0, R13 { JNE	.L77
+	BRA	#.L61
+.L137:
+	CMP.W	#0, R13 { JNE	.L81
+	BRA	#.L61
+.L136:
+	CMP.W	#0, R13 { JNE	.L78
+	BRA	#.L61
+	.size	cfiCheck, .-cfiCheck
+	.balign 2
+	.global	binarySearch
+	.type	binarySearch, @function
+binarySearch:
+; start of function
+; attributes: 
+; framesize_regs:     20
+; framesize_locals:   2
+; framesize_outgoing: 0
+; framesize:          22
+; elim ap -> fp       24
+; elim fp -> sp       2
+; saved regs: R4 R5 R6 R9 R10
+	; start of prologue
+	PUSHM.A	#2, R10
+	PUSHM.A	#3, R6
+	SUBA	#2, R1
+	; end of prologue
+	MOV.W	R12, R9
+	MOV.W	R13, R6
+	MOV.W	R14, @R1
+	CMP.W	R12, R13 { JL	.L146
+.L144:
+	MOV.W	R6, R13
+	ADD.W	R9, R13
+	RRUM.W	#1, R13
+	BIC.W	#1, R13
+	MOVX.W	&cfiDataHolder, R14
+	MOVX.W	&cfiDataHolder+2, R15
+	MOV.W	R13,R4 { MOV.W	#0,R5
+	MOV.W	R4, R10
+	ADD	R14, R10 ; cy
+	MOV.W	R5, R11
+	ADDC	R15, R11
+	PUSH.W	R11 { PUSH.W	R10 { POPM.A	#1, R12
+	MOV.W	@R12, R12
+	CMP.W	@R1, R12 { JEQ	.L147
+	CMP.W	@R1, R12 { JHS	.L142
+	MOV.W	R13, R9
+	ADD.W	#2, R9
+	CMP.W	R9, R6 { JGE	.L144
+.L146:
+	MOV.W	#-1, R12
+	; start of epilogue
+	ADDA	#2, R1
+	POPM.A	#3, r6
+	POPM.A	#2, r10
+	RETA
+.L142:
+	MOV.W	R13, R6
+	ADD.W	#-2, R6
+	CMP.W	R9, R6 { JGE	.L144
+	BRA	#.L146
+.L147:
+	MOV.B	R13, R12
+	SXT	R12
+	; start of epilogue
+	ADDA	#2, R1
+	POPM.A	#3, r6
+	POPM.A	#2, r10
+	RETA
+	.size	binarySearch, .-binarySearch
+	.balign 2
+	.global	isImmediateSafeValue
+	.type	isImmediateSafeValue, @function
+isImmediateSafeValue:
+; start of function
+; attributes: 
+; framesize_regs:     0
+; framesize_locals:   0
+; framesize_outgoing: 0
+; framesize:          0
+; elim ap -> fp       4
+; elim fp -> sp       0
+; saved regs:(none)
+	; start of prologue
+	; end of prologue
+	CMP.W	#-1024, R12 { JEQ	.L241
+	CMP.W	#-998, R12 { JEQ	.L241
+	CMP.W	#-972, R12 { JEQ	.L241
+	CMP.W	#-894, R12 { JEQ	.L241
+	CMP.W	#-816, R12 { JEQ	.L250
+	CMP.W	#-744, R12 { JEQ	.L241
+	CMP.W	#-672, R12 { JEQ	.L251
+	CMP.W	#-600, R12 { JEQ	.L241
+	MOV.W	R12, R14
+	AND.W	#-65, R14
+	CMP.W	#-580, R14 { JEQ	.L252
+.L198:
+	CMP.W	#-558, R12 { JEQ	.L246
+	CMP.W	#-538, R12 { JNE	.L200
+.L246:
+	CMP.W	#0, R13 { JNE	.L200
+.L237:
+	MOV.B	#1, R12
+.L149:
+	; start of epilogue
+	RETA
+.L241:
+	CMP.W	#0, R13 { JEQ	.L237
+	MOV.W	R12, R14
+.L200:
+	CMP.W	#-496, R14 { JEQ	.L253
+.L201:
+	CMP.W	#-474, R12 { JEQ	.L254
+.L202:
+	CMP.W	#-454, R14 { JEQ	.L255
+.L203:
+	CMP.W	#-412, R12 { JEQ	.L256
+.L204:
+	CMP.W	#-370, R14 { JEQ	.L257
+.L205:
+	CMP.W	#-348, R12 { JEQ	.L248
+	CMP.W	#-328, R12 { JEQ	.L248
+	MOV.W	R12, R14
+	BIC.W	#4, R14
+	CMP.W	#-238, R14 { JEQ	.L248
+.L208:
+	MOV.B	#1, R14
+	CMP.W	#-230, R12 { JEQ	.L258
+	MOV.B	#0, R14
+.L169:
+	MOV.B	R14, R12
+	BRA	#.L149
+.L250:
+	CMP.W	#0, R13 { JEQ	.L237
+	MOV.W	#-880, R14
+	BRA	#.L200
+.L253:
+	CMP.W	#0, R13 { JNE	.L201
+	BRA	#.L237
+.L251:
+	CMP.W	#0, R13 { JEQ	.L237
+	MOV.W	#-736, R14
+	BRA	#.L200
+.L252:
+	CMP.W	#0, R13 { JNE	.L198
+	BRA	#.L237
+.L254:
+	CMP.W	#0, R13 { JNE	.L202
+	BRA	#.L237
+.L255:
+	CMP.W	#0, R13 { JNE	.L203
+	BRA	#.L237
+.L256:
+	CMP.W	#0, R13 { JNE	.L204
+	BRA	#.L237
+.L257:
+	CMP.W	#0, R13 { JNE	.L205
+	BRA	#.L237
+.L248:
+	CMP.W	#0, R13 { JNE	.L208
+	BRA	#.L237
+.L258:
+	CMP.W	#0, R13 { JEQ	.L169
+	MOV.B	#0, R14
+	BRA	#.L169
+	.size	isImmediateSafeValue, .-isImmediateSafeValue
+	.global	__mspabi_remu
+	.global	__mspabi_remi
+	.balign 2
+	.global	verify
+	.type	verify, @function
+verify:
+; start of function
+; attributes: 
+; framesize_regs:     20
+; framesize_locals:   150
+; framesize_outgoing: 0
+; framesize:          170
+; elim ap -> fp       24
+; elim fp -> sp       150
+; saved regs: R4 R5 R6 R9 R10
+	; start of prologue
+	PUSHM.A	#2, R10
+	PUSHM.A	#3, R6
+	SUBA	#150, R1
+	; end of prologue
+	MOV.W	R12, 32(R1)
+	MOV.W	R13, 30(R1)
+	AND	#0xff, R14
+	MOV.W	R14, 24(R1)
+	CMP.W	#-15361, R13 { JEQ	.L454
+	MOV.W	#17408, R12
+	MOV.B	#1, R13
+.L260:
+	MOVX.W	R12, &cfiDataHolder
+	MOVX.W	R13, &cfiDataHolder+2
+	CMP.W	#0, 24(R1) { JNE	.L261
+	MOVX.W	#-23296, &FCTL3
+	MOVX.W	#-23292, &FCTL1
+	MOVX.W	&cfiDataHolder, R12
+	MOVX.W	&cfiDataHolder+2, R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R12
+	MOV.W	24(R1), @R12
+.L262:
+	MOVX.W	&FCTL3, R10
+	AND.B	#1, R10
+	BITX.W	#1, &FCTL3 { JNE	.L262
+	MOV.W	#256, R14
+	MOV.W	R10, R13
+	MOVA	#alwDst, R12
+	CALLA	#memset
+	MOVX.W	R10, &counterAlwDst
+	MOVX.B	R10, &counterBuffAlwDst
+	CMP.W	30(R1), 32(R1) { JHS	.L795
+.L263:
+	MOV.W	32(R1), R11
+	MOV.B	#0, R9
+	MOV.W	R9, 62(R1)
+	MOV.W	R9, 64(R1)
+	MOV.W	R9, 76(R1)
+	MOV.W	R9, 74(R1)
+	MOV.W	R9, 70(R1)
+	MOV.W	R9, 72(R1)
+	MOV.W	R9, 56(R1)
+	MOV.W	R9, 58(R1)
+	MOV.W	R9, 54(R1)
+	MOV.W	R9, 52(R1)
+	MOV.W	R9, 42(R1)
+.L429:
+	MOV.W	R11,R14 { MOV.W	#0,R15
+	MOV.W	R11, R12
+	MOV.W	@R12, R6
+	MOV.W	R14, R4
+	ADD	#2, R4 ; cy
+	MOV.W	R15, R5
+	ADDC	#0, R5
+	PUSH.W	R5 { PUSH.W	R4 { POPM.A	#1, R12
+	MOV.W	@R12, 16(R1)
+	MOV.W	R6, R12
+	AND.W	#-2048, R12
+	CMP.W	#6144, R12 { JEQ	.L796
+	MOV.W	R14, R10
+	MOV.W	R15, 40(R1)
+	MOV.W	#2, 34(R1)
+	MOV.W	#1, 124(R1)
+	MOV.W	#0, 20(R1)
+.L265:
+	MOV.W	R6, R12
+	AND.W	#-256, R12
+	MOV.W	R12, 36(R1)
+	MOV.W	R6, R12
+	AND.W	#-512, R12
+	CMP.W	#4096, R12 { JEQ	.L797
+	MOV.W	R6, R13
+	AND.W	#-64, R13
+	MOV.W	R13, 44(R1)
+	CMP.W	#4608, R13 { JEQ	.L798
+	CMP.W	#5120, R12 { JEQ	.L549
+	CMP.W	#4736, 44(R1) { JEQ	.L799
+	CMP.W	#16688, R6 { JEQ	.L549
+	CMP.W	#4864, R6 { JEQ	.L549
+	CMP.W	#272, R6 { JEQ	.L549
+	MOV.W	R6, R13
+	ADD.W	#-8192, R13
+	MOV.W	R13, 44(R1)
+	MOV.W	#8191, R13
+	CMP.W	44(R1), R13 { JLO	.L295
+	MOV.W	R6, R10
+	AND.W	#1023, R10
+	MOV.W	R6, R12
+	RRUM.W	#2, R12
+	CMP.B	#0, R12 { JL	.L296
+	MOV.W	R10,R12 { MOV.W	#0,R13
+	MOV.W	R12, 78(R1)
+	MOV.W	R13, 80(R1)
+.L297:
+	MOV.W	78(R1), R13
+	ADD	R13, R13 ; cy
+	MOV.W	R13, 16(R1)
+	MOV.W	80(R1), R13
+	ADDC	R13, R13
+	MOV.W	R4, R12
+	MOV.W	R4, R10
+	ADDX	16(R1), R12 ; cy
+	MOV.W	R12, 16(R1)
+	ADDC	R5, R13
+	MOV.W	16(R1), R12
+	CMP.W	#0, 24(R1) { JEQ	.L800
+.L775:
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#cfiCheck
+	AND	#0xff, R12
+	MOV.W	R12, 42(R1)
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+.L286:
+	CMP.W	#1, 42(R1) { JNE	.L421
+	MOV.W	#0, 20(R1)
+	BRA	#.L267
+.L797:
+	BIT.W	#63, R6 { JEQ	.L549
+	BIT.W	#16, R6 { JEQ	.L421
+	MOV.W	R6, R12
+	AND.B	#48, R12
+	CMP.W	#48, R12 { JEQ	.L272
+.L406:
+	MOV.W	34(R1), 124(R1)
+.L421:
+	ADD.W	124(R1), R9
+	MOV.W	R9, R13
+	ADD.W	R9, R13
+	ADD.W	32(R1), R13
+	CMP.W	#0, 24(R1) { JNE	.L423
+.L448:
+	MOVX.W	&counterAlwDst, R12
+	MOV.W	R12, R14
+	ADD.W	#1, R14
+	MOVX.W	R14, &counterAlwDst
+	MOV.W	R12, R12
+	ADDA	R12, R12
+	MOVX.W	R11, alwDst(R12)
+	MOVX.W	&counterAlwDst, R12
+	MOV.B	#255, R15
+	CMP.W	R12, R15 { JLO	.L801
+	CMP.W	30(R1), R13 { JHS	.L428
+	MOV.W	R13, R11
+	BRA	#.L429
+.L798:
+	MOV.W	R6, R10
+	AND.B	#48, R10
+	CMP.W	#0, 24(R1) { JNE	.L270
+	CMP.W	#48, R10 { JNE	.L271
+	MOV.W	16(R1), R12
+	AND.W	#-256, R12
+	CMP.W	#-23296, R12 { JEQ	.L271
+.L272:
+	BIT.W	#15, R6 { JEQ	.L406
+.L786:
+	ADD.W	124(R1), R9
+	MOV.W	R9, R13
+	ADD.W	R9, R13
+	ADD.W	32(R1), R13
+	CMP.W	#0, 24(R1) { JEQ	.L448
+.L423:
+	MOV.W	R13, R11
+.L427:
+	CMP.W	30(R1), R13 { JLO	.L429
+.L803:
+	MOV.W	#0, 20(R1)
+	BRA	#.L422
+.L830:
+	CMP.W	#20608, 16(R1) { JNE	.L373
+	MOV.W	36(R1), R13
+	ADD	#-3585, R13 ; cy
+	MOV.W	38(R1), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L351
+	MOV.W	#511, R10
+	CMP.W	R13, R10 { JLO	.L351
+.L549:
+	MOV.W	#1, 20(R1)
+.L267:
+	MOVX.W	R6, &interruptWord
+	MOVX.W	R14, &interruptPcOld
+	MOVX.W	R15, &interruptPcOld+2
+.L422:
+	CMP.W	#0, 24(R1) { JNE	.L802
+.L570:
+	MOV.W	20(R1), R14
+	MOV.B	R14, R12
+	; start of epilogue
+	ADDA	#150, R1
+	POPM.A	#3, r6
+	POPM.A	#2, r10
+	RETA
+.L796:
+	MOV.W	R6, R12
+	RPT	#7 { RRUX.W	R12
+	AND.B	#15, R12
+	MOV.W	R12, 52(R1)
+	MOV.W	R6, R10
+	AND.B	#15, R10
+	MOV.W	R10, 54(R1)
+	MOV.W	R14, R12
+	ADD	#4, R12 ; cy
+	MOV.W	R12, 26(R1)
+	MOV.W	R15, R13
+	ADDC	#0, R13
+	MOV.W	R13, 28(R1)
+	MOV.W	26(R1), R12
+	MOV.W	28(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R12
+	MOV.W	R4, R10
+	MOV.W	R5, 40(R1)
+	MOV.W	26(R1), R4
+	MOV.W	28(R1), R5
+	MOV.W	R6, 60(R1)
+	MOV.W	16(R1), R6
+	MOV.W	@R12, 16(R1)
+	MOV.W	#3, 34(R1)
+	MOV.W	#2, 124(R1)
+	MOV.W	#1, 20(R1)
+	BRA	#.L265
+.L801:
+	MOVX.B	&counterBuffAlwDst, R14
+	MOVX.W	&cfiDataHolder, R10
+	MOVX.W	&cfiDataHolder+2, R11
+	MOVX.W	#-23296, &FCTL3
+	MOVX.W	#-23168, &FCTL1
+	RPT	#9 { RLAX.W	R14
+	BIT.W	#0x8000, R14 { SUBC.W	R15, R15 { INV.W	R15, R15
+	MOV.W	R14, R12
+	ADD	R10, R12 ; cy
+	MOV.W	R12, 48(R1)
+	MOV.W	R15, R12
+	ADDC	R11, R12
+	MOV.W	R12, 50(R1)
+	MOV.W	48(R1), R14
+	MOV.W	50(R1), R15
+	PUSH.W	R15 { PUSH.W	R14 { POPM.A	#1, R6
+	MOV.B	#0, R12
+.L425:
+	MOV.B	R12, R14
+	RLAM.A	#2, R14
+	MOVA	R14, R10
+	ADDA	R6, R10
+	MOVX.W	alwDst(R14), @R10
+	MOVX.W	alwDst+2(R14), 2(R10)
+	ADD.B	#1, R12
+	AND	#0xff, R12
+	MOVX.W	&counterAlwDst, R14
+	RRUM.W	#1, R14
+	CMP.W	R14, R12 { JLO	.L425
+	BITX.W	#1, &counterAlwDst { JEQ	.L426
+	MOVX.W	#-23232, &FCTL1
+	ADD.W	R12, R12
+	RLAM.A #4, R12 { RRAM.A #4, R12
+	ADDA	R12, R12
+	ADDA	R12, R6
+	MOVX.W	alwDst(R12), @R6
+.L426:
+	MOVX.W	#0, &counterAlwDst
+	ADDX.B	#1, &counterBuffAlwDst
+	MOV.W	R13, R11
+	CMP.W	30(R1), R13 { JLO	.L429
+	BRA	#.L803
+.L428:
+	MOVX.B	&counterBuffAlwDst, R12
+	MOVX.W	&cfiDataHolder, R14
+	MOVX.W	&cfiDataHolder+2, R15
+	MOVX.W	#-23296, &FCTL3
+	MOVX.W	#-23168, &FCTL1
+	RPT	#9 { RLAX.W	R12
+	BIT.W	#0x8000, R12 { SUBC.W	R13, R13 { INV.W	R13, R13
+	MOV.W	R12, R10
+	ADD	R14, R10 ; cy
+	MOV.W	R10, 66(R1)
+	MOV.W	R13, R10
+	ADDC	R15, R10
+	MOV.W	R10, 68(R1)
+	MOV.W	66(R1), R12
+	MOV.W	68(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R14
+	MOV.B	#0, R13
+.L430:
+	MOV.B	R13, R12
+	RLAM.A	#2, R12
+	MOVA	R12, R10
+	ADDA	R14, R10
+	MOVX.W	alwDst(R12), @R10
+	MOVX.W	alwDst+2(R12), 2(R10)
+	ADD.B	#1, R13
+	AND	#0xff, R13
+	MOVX.W	&counterAlwDst, R12
+	RRUM.W	#1, R12
+	CMP.W	R12, R13 { JLO	.L430
+	BITX.W	#1, &counterAlwDst { JEQ	.L777
+	MOVX.W	#-23232, &FCTL1
+	MOV.W	R13, R12
+	ADD.W	R13, R12
+	RLAM.A #4, R12 { RRAM.A #4, R12
+	ADDA	R12, R12
+	ADDA	R12, R14
+	MOVX.W	alwDst(R12), @R14
+.L777:
+	MOV.W	#0, 20(R1)
+.L804:
+	MOV.W	20(R1), R14
+	MOV.B	R14, R12
+	; start of epilogue
+	ADDA	#150, R1
+	POPM.A	#3, r6
+	POPM.A	#2, r10
+	RETA
+.L261:
+	CMP.W	30(R1), 32(R1) { JLO	.L263
+	MOV.W	#0, 20(R1)
+	BRA	#.L804
+.L802:
+	MOV.W	42(R1), 20(R1)
+	MOV.W	20(R1), R14
+	MOV.B	R14, R12
+	; start of epilogue
+	ADDA	#150, R1
+	POPM.A	#3, r6
+	POPM.A	#2, r10
+	RETA
+.L271:
+	MOV.W	R6, R12
+	AND.B	#63, R12
+	CMP.W	#16, R12 { JEQ	.L805
+	CMP.W	#18, R12 { JNE	.L549
+	MOV.W	16(R1), R12
+	MOV.W	@R12, R12
+	AND.W	#-256, R12
+	CMP.W	#-23296, R12 { JEQ	.L549
+.L270:
+	BIT.W	#16, R6 { JEQ	.L421
+.L811:
+	CMP.W	#48, R10 { JNE	.L406
+	BIT.W	#15, R6 { JNE	.L786
+	BRA	#.L406
+.L454:
+	MOV.W	#-15360, R12
+	MOV.B	#1, R13
+	BRA	#.L260
+.L799:
+	MOV.W	R6, R10
+	AND.B	#48, R10
+	MOV.W	R10, 20(R1)
+	CMP.W	#0, 24(R1) { JEQ	.L806
+	MOV.W	R6, R12
+	AND.B	#63, R12
+	CMP.W	#0, 20(R1) { JNE	.L807
+.L283:
+	CMP.W	#48, R12 { JEQ	.L808
+	CMP.W	#16, R12 { JEQ	.L809
+	CMP.W	#18, R12 { JEQ	.L810
+.L288:
+	ADD.W	124(R1), R9
+	MOV.W	R9, R13
+	ADD.W	R9, R13
+	ADD.W	32(R1), R13
+	MOV.W	R13, R11
+	BRA	#.L427
+.L805:
+	MOV.W	16(R1), R12
+	MOV.W	#0,R13
+	MOV.W	R12, 16(R1)
+	MOV.W	R13, 18(R1)
+	MOV.W	R4, R12
+	ADDX	16(R1), R12 ; cy
+	MOV.W	R12, 82(R1)
+	MOV.W	R5, R12
+	ADDCX	18(R1), R12
+	MOV.W	R12, 84(R1)
+	MOV.W	82(R1), R12
+	MOV.W	84(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R12
+	MOV.W	@R12, R12
+	AND.W	#-256, R12
+	CMP.W	#-23296, R12 { JEQ	.L549
+	BIT.W	#16, R6 { JEQ	.L421
+	BRA	#.L811
+.L806:
+	CMP.W	#0, R10 { JEQ	.L549
+	MOV.W	R6, R10
+	AND.B	#63, R10
+	MOV.W	R10, 36(R1)
+	CMP.W	#48, R10 { JEQ	.L812
+	CMP.W	#16, 36(R1) { JNE	.L278
+	MOV.W	16(R1), R13
+	MOV.W	R13, R12 { RPT	#15 { RRAX.W	R13
+	MOV.W	R12, 44(R1)
+	MOV.W	R13, 46(R1)
+	MOV.W	R4, R10
+	ADD	R12, R10 ; cy
+	MOV.W	R10, 100(R1)
+	MOV.W	R5, R10
+	ADDCX	46(R1), R10
+	MOV.W	R10, 102(R1)
+	MOV.W	100(R1), R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	R10, R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L549
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L549
+	MOV.W	100(R1), R12
+	MOV.W	102(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JL	.L549
+.L277:
+	CMP.W	#16, 20(R1) { JEQ	.L813
+	CMP.W	#32, 20(R1) { JEQ	.L549
+	CMP.W	#48, 20(R1) { JNE	.L281
+	CMP.W	#48, 36(R1) { JNE	.L549
+	BIT.W	#15, R6 { JEQ	.L449
+	MOV.W	124(R1), 34(R1)
+.L449:
+	CMP.W	#-600, 16(R1) { JEQ	.L289
+	MOV.W	16(R1), R12
+	AND.W	#-65, R12
+	CMP.W	#-580, R12 { JEQ	.L289
+	CMP.W	#-558, 16(R1) { JEQ	.L289
+	CMP.W	#-538, 16(R1) { JEQ	.L289
+	CMP.W	#-496, R12 { JEQ	.L289
+	CMP.W	#-474, 16(R1) { JEQ	.L289
+	CMP.W	#-454, R12 { JEQ	.L289
+	CMP.W	#-412, 16(R1) { JEQ	.L289
+	CMP.W	#-370, R12 { JEQ	.L289
+	CMP.W	#-348, 16(R1) { JEQ	.L289
+	CMP.W	#-328, 16(R1) { JEQ	.L289
+.L757:
+	ADD.W	34(R1), R9
+	MOV.W	R9, R13
+	ADD.W	R9, R13
+	ADD.W	32(R1), R13
+	BRA	#.L448
+.L295:
+	MOV.W	R6, R13
+	AND.W	#-4096, R13
+	MOV.W	R13, 44(R1)
+	ADD.W	#-16384, R13
+	MOV.W	R13, 94(R1)
+	MOV.W	#-20480, R13
+	CMP.W	94(R1), R13 { JLO	.L300
+	ADD	#4, R10 ; cy
+	MOV.W	R10, 90(R1)
+	MOV.W	40(R1), R10
+	ADDC	#0, R10
+	MOV.W	R10, 92(R1)
+	MOV.W	90(R1), R12
+	MOV.W	92(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, 94(R1)
+	MOV.W	16(R1), R12
+	MOV.W	#0,R13
+	MOV.W	R12, 36(R1)
+	MOV.W	R13, 38(R1)
+	MOV.W	R6, R10
+	AND.B	#48, R10
+	MOV.W	R6, R13
+	AND.W	#3888, R13
+	MOV.W	R13, 40(R1)
+	CMP.W	#16, R10 { JEQ	.L301
+	CMP.W	#48, R13 { JEQ	.L302
+.L489:
+	MOV.W	R4, 90(R1)
+	MOV.W	R5, 92(R1)
+	MOV.W	36(R1), 44(R1)
+	MOV.W	38(R1), 46(R1)
+.L303:
+	CMP.W	#0, 20(R1) { JEQ	.L304
+	MOV.W	36(R1), 56(R1)
+	MOV.W	52(R1), R13
+	BIS.W	38(R1), R13
+	MOV.W	R13, 58(R1)
+	MOV.W	56(R1), 70(R1)
+	MOV.W	R13, 72(R1)
+	MOV.W	44(R1), 76(R1)
+	MOV.W	54(R1), R12
+	BIS.W	46(R1), R12
+	MOV.W	R12, 74(R1)
+	MOV.W	44(R1), 62(R1)
+	MOV.W	R12, 64(R1)
+.L304:
+	MOV.W	R6, R13
+	AND.W	#-3953, R13
+	CMP.W	#16384, R13 { JEQ	.L814
+	CMP.W	#0, 24(R1) { JNE	.L351
+	CMP.W	#20480, R13 { JEQ	.L549
+	MOV.W	R6, R12
+	AND.W	#-8049, R12
+	MOV.W	R6, R13
+	AND.W	#24719, R13
+	CMP.W	#24576, R13 { JEQ	.L549
+	MOV.W	R6, R13
+	AND.W	#-12145, R13
+	CMP.W	#-32768, R13 { JEQ	.L549
+	CMP.W	#-16384, R12 { JEQ	.L549
+.L451:
+	MOV.W	R6, R12
+	AND.B	#64, R12
+	BIT.W	#64, R6 { JNE	.L351
+	MOV.W	R12, R10
+.L323:
+	MOV.W	R6, R13
+	AND.W	#-3904, R13
+	MOV.W	R13, 16(R1)
+	MOV.W	R6, R12
+	AND.W	#-16192, R12
+	CMP.W	#16512, R12 { JEQ	.L356
+	CMP.W	#-8064, R13 { JEQ	.L356
+	MOV.W	R6, R12
+	AND.W	#-12096, R12
+	CMP.W	#-32640, R12 { JEQ	.L356
+	MOV.W	R10, 20(R1)
+	CMP.B	#1, R10 { JEQ	.L267
+.L351:
+	BIT.W	#128, R6 { JEQ	.L421
+.L441:
+	MOV.W	124(R1), R12
+	ADD.B	#1, R12
+	AND	#0xff, R12
+	MOV.W	R12, 124(R1)
+	BRA	#.L286
+.L300:
+	CMP.W	#4864, 36(R1) { JEQ	.L815
+	CMP.W	#0, 44(R1) { JNE	.L401
+	MOV.W	R6, R12
+	RRUM.W	#4, R12
+	MOV.W	R6, R10
+	AND.B	#240, R10
+	MOV.W	R10, 20(R1)
+	BIT.W	#12, R12 { JEQ	.L402
+	AND.B	#15, R12
+	MOV.W	R12, R13
+	ADD.W	#-6, R13
+	MOV.B	#2, R10
+	CMP.W	R13, R10 { JHS	.L402
+	CMP.W	#192, 20(R1) { JEQ	.L816
+	ADD.W	#-9, R12
+	MOV.B	#2, R13
+	CMP.W	R12, R13 { JLO	.L421
+	BRA	#.L406
+.L812:
+	MOV.W	16(R1), R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JGE	.L277
+	MOV.W	16(R1), R10
+	MOV.W	R10,R12 { MOV.W	#0,R13
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#isImmediateSafeValue
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	CMP.B	#0, R12 { JNE	.L277
+	BRA	#.L549
+.L296:
+	BIS.W	#-1024, R10
+	MOV.W	R10, 78(R1)
+	MOV.W	#-1, 80(R1)
+	BRA	#.L297
+.L795:
+	MOV.W	24(R1), 20(R1)
+	BRA	#.L570
+.L807:
+	CMP.W	#32, 20(R1) { JEQ	.L283
+	CMP.W	#48, 20(R1) { JNE	.L767
+	BIT.W	#15, R6 { JNE	.L283
+.L767:
+	MOV.W	34(R1), 124(R1)
+	BRA	#.L283
+.L813:
+	MOV.W	R6, R12
+	AND.B	#61, R12
+	CMP.W	#16, R12 { JNE	.L549
+.L281:
+	CMP.W	#48, 36(R1) { JNE	.L757
+	BRA	#.L449
+.L278:
+	CMP.W	#18, 36(R1) { JNE	.L277
+	MOV.W	16(R1), R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JL	.L549
+	MOV.W	16(R1), R12
+	MOV.W	@R12, R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JGE	.L277
+	BRA	#.L549
+.L800:
+	ADD	#-17408, R12 ; cy
+	ADDC	#-1, R13
+	CMP.W	#0, R13 { JNE	.L549
+	MOV.W	#32766, R13
+	CMP.W	R12, R13 { JLO	.L549
+.L544:
+	MOV.W	124(R1), 34(R1)
+	BRA	#.L757
+.L289:
+	MOVX.B	&historyIndex, R12
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 44(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 20(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 16(R1)
+	MOV.W	R12, 124(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 36(R1)
+	MOV.W	R12, 126(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 40(R1)
+	MOV.W	R12, 128(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 94(R1)
+	MOVA	#instHistory, R10
+	MOV.W	R12, R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	CMP.W	#17028, R12 { JNE	.L549
+	MOV.W	40(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	CMP.W	#-15822, R12 { JNE	.L549
+	MOV.W	36(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	CMP.W	#17152, R12 { JNE	.L549
+	MOV.W	16(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	MOV.W	R12, R13
+	AND.W	#-3968, R13
+	CMP.W	#16384, R13 { JEQ	.L778
+	MOV.W	R12, R13
+	AND.W	#-4096, R13
+	BIT.W	#-4096, R12 { JEQ	.L292
+	CMP.W	#4096, R13 { JNE	.L549
+	RPT	#8 { RRUX.W	R12
+.L778:
+	AND.B	#15, R12
+	CMP.W	#5, R12 { JNE	.L549
+.L292:
+	MOV.W	20(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	MOV.W	R12, R13
+	AND.W	#-3968, R13
+	CMP.W	#16384, R13 { JEQ	.L779
+	MOV.W	R12, R13
+	AND.W	#-4096, R13
+	BIT.W	#-4096, R12 { JEQ	.L294
+	CMP.W	#4096, R13 { JNE	.L549
+	RPT	#8 { RRUX.W	R12
+.L779:
+	AND.B	#15, R12
+	CMP.W	#6, R12 { JNE	.L549
+.L294:
+	MOV.W	94(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	ADDA	#2, R12
+	MOV.W	@R12, 16(R1)
+	MOV.W	2(R12), 18(R1)
+	MOV.W	128(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOVA	R12, R13
+	ADDA	#2, R13
+	MOV.W	@R13, 36(R1)
+	MOV.W	2(R13), 38(R1)
+	MOV.W	16(R1), R12
+	ADD	#2, R12 ; cy
+	MOV.W	R12, 40(R1)
+	MOV.W	18(R1), R12
+	ADDC	#0, R12
+	MOV.W	R12, 16(R1)
+	MOV.W	40(R1), R12
+	CMP.W	36(R1), R12 { JNE	.L549
+	MOV.W	16(R1), R12
+	CMP.W	38(R1), R12 { JNE	.L549
+	MOV.W	@R13, 16(R1)
+	MOV.W	2(R13), 18(R1)
+	MOV.W	126(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOVA	R12, R13
+	ADDA	#2, R13
+	MOV.W	@R13, 36(R1)
+	MOV.W	2(R13), 38(R1)
+	MOV.W	16(R1), R12
+	ADD	#2, R12 ; cy
+	MOV.W	R12, 40(R1)
+	MOV.W	18(R1), R12
+	ADDC	#0, R12
+	MOV.W	R12, 16(R1)
+	MOV.W	40(R1), R12
+	CMP.W	36(R1), R12 { JNE	.L549
+	MOV.W	16(R1), R12
+	CMP.W	38(R1), R12 { JNE	.L549
+	MOV.W	@R13, 16(R1)
+	MOV.W	2(R13), 18(R1)
+	MOV.W	124(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOVA	R12, R13
+	ADDA	#2, R13
+	MOV.W	@R13, 36(R1)
+	MOV.W	2(R13), 38(R1)
+	MOV.W	16(R1), R12
+	ADD	#2, R12 ; cy
+	MOV.W	R12, 40(R1)
+	MOV.W	18(R1), R12
+	ADDC	#0, R12
+	MOV.W	R12, 16(R1)
+	MOV.W	40(R1), R12
+	CMP.W	36(R1), R12 { JNE	.L549
+	MOV.W	16(R1), R12
+	CMP.W	38(R1), R12 { JNE	.L549
+	MOV.W	@R13, 16(R1)
+	MOV.W	2(R13), 18(R1)
+	MOV.W	20(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOVA	R12, R13
+	ADDA	#2, R13
+	MOV.W	@R13, 20(R1)
+	MOV.W	2(R13), 22(R1)
+	MOV.W	16(R1), R12
+	ADD	#2, R12 ; cy
+	MOV.W	R12, 36(R1)
+	MOV.W	18(R1), R12
+	ADDC	#0, R12
+	MOV.W	R12, 16(R1)
+	MOV.W	36(R1), R12
+	CMP.W	20(R1), R12 { JNE	.L549
+	MOV.W	16(R1), R12
+	CMP.W	22(R1), R12 { JNE	.L549
+	MOV.W	@R13, 16(R1)
+	MOV.W	2(R13), 18(R1)
+	MOV.W	44(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	ADDA	#2, R12
+	MOV.W	2(R12), R13
+	MOV.W	@R12, R12
+	MOV.W	16(R1), R10
+	ADD	#2, R10 ; cy
+	MOV.W	R10, 20(R1)
+	MOV.W	18(R1), R10
+	ADDC	#0, R10
+	CMP.W	R12, 20(R1) { JNE	.L549
+	CMP.W	R13, R10 { JNE	.L549
+	BRA	#.L757
+.L301:
+	CMP.W	#784, 40(R1) { JEQ	.L489
+	MOV.W	R6, R12
+	AND.W	#3632, R12
+	CMP.W	#560, R12 { JEQ	.L489
+.L302:
+	MOV.W	94(R1), R12
+	MOV.W	#0,R13
+	MOV.W	R12, 44(R1)
+	MOV.W	R13, 46(R1)
+	MOV.W	34(R1), 124(R1)
+	BRA	#.L303
+.L814:
+	CMP.W	#48, 40(R1) { JEQ	.L306
+	CMP.W	#816, 40(R1) { JEQ	.L490
+	CMP.W	#768, 40(R1) { JEQ	.L491
+	CMP.W	#784, 40(R1) { JEQ	.L492
+	CMP.W	#800, 40(R1) { JEQ	.L493
+	CMP.W	#544, 40(R1) { JEQ	.L494
+	CMP.W	#560, 40(R1) { JEQ	.L817
+	CMP.W	#0, R10 { JEQ	.L782
+	CMP.W	#16, 40(R1) { JEQ	.L818
+	CMP.W	#528, 40(R1) { JEQ	.L819
+	CMP.W	#32, R10 { JEQ	.L782
+	CMP.W	#48, R10 { JEQ	.L782
+.L322:
+	CMP.W	#0, 24(R1) { JEQ	.L435
+.L344:
+	MOV.W	R6, R12
+	AND.B	#63, R12
+	CMP.W	#16, R12 { JEQ	.L820
+	CMP.W	#18, R12 { JNE	.L351
+	MOV.W	R6, R13
+	AND.B	#64, R13
+	MOV.W	R13, 34(R1)
+	CMP.W	#0, 20(R1) { JNE	.L352
+	MOV.W	16(R1), R10
+	RLAM.A #4, R10 { RRAM.A #4, R10
+	MOV.W	@R10, R12
+	CMP.W	#0, R13 { JEQ	.L353
+.L780:
+	RPT	#8 { RRUX.W	R12
+.L353:
+	MOV.W	#0,R13
+	BRA	#.L769
+.L401:
+	CMP.W	#0, 24(R1) { JNE	.L288
+	CMP.W	#5632, R12 { JNE	.L544
+	BIT.W	#239, R6 { JEQ	.L549
+	MOV.W	124(R1), 34(R1)
+	BRA	#.L757
+.L815:
+	MOV.W	R6, R12
+	AND.B	#192, R12
+	CMP.W	#64, R12 { JEQ	.L549
+	MOV.W	R6, R12
+	AND.B	#240, R12
+	CMP.W	#144, R12 { JEQ	.L821
+	CMP.W	#128, R12 { JEQ	.L822
+	CMP.W	#176, R12 { JEQ	.L388
+	CMP.W	#0, 24(R1) { JEQ	.L544
+	CMP.W	#144, R12 { JEQ	.L383
+	CMP.W	#128, R12 { JNE	.L288
+.L387:
+	MOV.W	R4, R13
+	ADDX	70(R1), R13 ; cy
+	MOV.W	R13, 146(R1)
+	MOV.W	R5, R12
+	ADDCX	72(R1), R12
+	MOV.W	R12, 148(R1)
+	MOV.W	146(R1), R12
+	MOV.W	148(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R12
+	MOV.W	2(R10), R13
+	BRA	#.L775
+.L808:
+	MOV.W	16(R1), R10
+	MOV.W	R10,R12 { MOV.W	#0,R13
+	BRA	#.L775
+.L809:
+	MOV.W	16(R1), R13
+	MOV.W	R13, R12 { RPT	#15 { RRAX.W	R13
+	MOV.W	R12, 16(R1)
+	MOV.W	R13, 18(R1)
+	MOV.W	R4, R10
+	ADD	R12, R10 ; cy
+	MOV.W	R10, 130(R1)
+	MOV.W	R5, R10
+	ADDCX	18(R1), R10
+	MOV.W	R10, 132(R1)
+	MOV.W	130(R1), R12
+	MOV.W	132(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R10
+	MOV.W	R10,R12 { MOV.W	#0,R13
+	BRA	#.L775
+.L402:
+	BIT.W	#15, R6 { JEQ	.L823
+.L405:
+	CMP.W	#32, 20(R1) { JEQ	.L406
+.L439:
+	AND.B	#176, R6
+	CMP.W	#48, R6 { JEQ	.L406
+	CMP.W	#96, 20(R1) { JEQ	.L406
+	CMP.W	#128, 20(R1) { JNE	.L421
+	BRA	#.L406
+.L810:
+	MOV.W	16(R1), R12
+	MOV.W	@R12, R12
+	MOV.W	#0,R13
+	BRA	#.L775
+.L435:
+	MOV.W	R6, R12
+	AND.W	#-12145, R12
+	CMP.W	#-32768, R12 { JEQ	.L549
+	BRA	#.L451
+.L823:
+	MOV.W	R6, R12
+	AND.B	#224, R12
+	CMP.W	#96, R12 { JEQ	.L406
+	CMP.W	#192, 20(R1) { JEQ	.L549
+	CMP.W	#48, 20(R1) { JEQ	.L824
+	CMP.W	#0, R12 { JEQ	.L549
+	CMP.W	#48, R6 { JEQ	.L408
+	CMP.W	#32, 20(R1) { JNE	.L414
+	MOV.W	R6, R13
+	RPT	#8 { RRUX.W	R13
+	MOV.W	R13, 20(R1)
+	MOV.W	16(R1), 56(R1)
+	MOV.W	R13, 58(R1)
+	MOV.W	56(R1), R10
+	ADD	#-17408, R10 ; cy
+	MOV.W	R13, R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L549
+	MOV.W	#32767, R12
+	CMP.W	R10, R12 { JLO	.L549
+	MOV.W	56(R1), R12
+	MOV.W	58(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R12
+	MOVA	R12, 36(R1)
+	MOV.W	@R12, R10
+	ADD	#-17408, R10 ; cy
+	MOV.W	2(R12), R13
+	ADDC	#-1, R13
+	MOV.W	R13, 16(R1)
+	CMP.W	#0, R13 { JNE	.L549
+	MOV.W	#32767, R12
+	CMP.W	R10, R12 { JLO	.L549
+	MOV.W	20(R1), R10
+	AND	#0xff, R10
+	MOV.W	R10, 52(R1)
+	CMP.W	#0, 24(R1) { JEQ	.L757
+	MOVA	36(R1), R10
+.L770:
+	MOV.W	@R10, R12
+	MOV.W	2(R10), R13
+.L771:
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#cfiCheck
+	AND	#0xff, R12
+	MOV.W	R12, 42(R1)
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	MOV.W	34(R1), 124(R1)
+	BRA	#.L286
+.L782:
+	CMP.W	#0, 24(R1) { JNE	.L549
+	BIT.W	#64, R6 { JNE	.L549
+.L342:
+	MOV.W	R6, R12
+	AND.W	#-3904, R12
+	MOV.W	R12, 16(R1)
+	MOV.W	R6, R12
+	AND.W	#-16192, R12
+	CMP.W	#16512, R12 { JEQ	.L548
+	MOV.W	R6, R12
+	AND.W	#-12096, R12
+	CMP.W	#-32640, R12 { JNE	.L549
+.L548:
+	MOV.B	#1, R10
+.L356:
+	MOV.W	R6, R12
+	AND.B	#143, R12
+	CMP.W	#128, R12 { JEQ	.L825
+	CMP.W	#130, R12 { JEQ	.L826
+	BIT.W	#128, R6 { JNE	.L360
+	CMP.B	#1, R10 { JNE	.L421
+.L360:
+	CMP.W	#48, 40(R1) { JEQ	.L369
+	CMP.W	#816, 40(R1) { JEQ	.L509
+	CMP.W	#768, 40(R1) { JEQ	.L510
+	CMP.W	#784, 40(R1) { JEQ	.L511
+	CMP.W	#800, 40(R1) { JEQ	.L512
+	CMP.W	#544, 40(R1) { JEQ	.L513
+	CMP.W	#560, 40(R1) { JNE	.L549
+	MOV.W	#8, 36(R1)
+	MOV.W	#0, 38(R1)
+.L370:
+	CMP.W	#16512, 16(R1) { JEQ	.L351
+	CMP.W	#20608, 16(R1) { JEQ	.L351
+.L373:
+	CMP.W	#24704, 16(R1) { JNE	.L549
+	MOV.W	36(R1), R13
+	ADD	#-3584, R13 ; cy
+	MOV.W	38(R1), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L351
+	MOV.W	#512, R12
+	CMP.W	R13, R12 { JLO	.L351
+	BRA	#.L549
+.L490:
+	MOV.W	#-1, 86(R1)
+	MOV.W	#-1, 88(R1)
+.L307:
+	MOV.W	86(R1), R12
+	MOV.W	88(R1), R13
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#isImmediateSafeValue
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	CMP.B	#0, R12 { JEQ	.L782
+.L312:
+	CMP.W	#0, 24(R1) { JEQ	.L435
+	MOV.W	R6, R12
+	AND.W	#3376, R12
+	CMP.W	#48, R12 { JEQ	.L343
+	CMP.W	#816, 40(R1) { JEQ	.L343
+	MOV.W	R6, R12
+	AND.W	#3872, R12
+	CMP.W	#768, R12 { JEQ	.L343
+	MOV.W	R6, R12
+	AND.W	#3632, R12
+	CMP.W	#544, R12 { JNE	.L344
+.L343:
+	MOV.W	86(R1), R12
+	MOV.W	88(R1), R13
+.L769:
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#cfiCheck
+	AND	#0xff, R12
+	MOV.W	R12, 42(R1)
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	BIT.W	#128, R6 { JEQ	.L286
+	BRA	#.L441
+.L492:
+	MOV.W	#1, 86(R1)
+	MOV.W	#0, 88(R1)
+	BRA	#.L307
+.L491:
+	MOV.W	#0, 86(R1)
+	MOV.W	#0, 88(R1)
+	BRA	#.L307
+.L306:
+	MOV.W	R6, R12
+	AND.B	#64, R12
+	CMP.W	#0, 20(R1) { JEQ	.L827
+	CMP.W	#0, R12 { JEQ	.L768
+	BIT.W	#64, 60(R1) { JNE	.L311
+.L768:
+	MOV.W	56(R1), 86(R1)
+	MOV.W	58(R1), 88(R1)
+.L437:
+	MOV.W	86(R1), R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	88(R1), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L307
+	MOV.W	#32767, R10
+	CMP.W	R13, R10 { JHS	.L312
+	BRA	#.L307
+.L816:
+	BIT.W	#15, R6 { JEQ	.L549
+	BRA	#.L439
+.L817:
+	MOV.W	#8, 86(R1)
+	MOV.W	#0, 88(R1)
+	BRA	#.L307
+.L826:
+	CMP.W	#0, 20(R1) { JEQ	.L828
+	CMP.W	#324, 76(R1) { JEQ	.L829
+.L362:
+	CMP.B	#1, R10 { JNE	.L351
+	BRA	#.L360
+.L513:
+	MOV.W	#4, 36(R1)
+	MOV.W	#0, 38(R1)
+	BRA	#.L370
+.L511:
+	MOV.W	#1, 36(R1)
+	MOV.W	#0, 38(R1)
+	BRA	#.L370
+.L510:
+	MOV.W	#0, 36(R1)
+	MOV.W	#0, 38(R1)
+	BRA	#.L370
+.L512:
+	MOV.W	#2, 36(R1)
+	MOV.W	#0, 38(R1)
+	BRA	#.L370
+.L829:
+	CMP.W	#0, 74(R1) { JEQ	.L360
+	CMP.B	#1, R10 { JNE	.L351
+	BRA	#.L360
+.L828:
+	MOV.W	44(R1), R12
+	CMP.W	#324, R12 { JNE	.L362
+	MOV.W	46(R1), R12
+	CMP.W	#0, R12 { JEQ	.L360
+	CMP.B	#1, R10 { JNE	.L351
+	BRA	#.L360
+.L509:
+	MOV.W	#-1, 36(R1)
+	MOV.W	#-1, 38(R1)
+	BRA	#.L370
+.L369:
+	CMP.W	#16512, 16(R1) { JNE	.L830
+	MOV.B	#1, R12
+	MOV.W	36(R1), R13
+	CMP.W	#165, R13 { JEQ	.L831
+.L375:
+	MOV.B	#0, R12
+.L374:
+	AND	#0xff, R12
+	MOV.W	R12, 20(R1)
+	MOV.W	R12, R10
+	CMP.B	#1, R10 { JEQ	.L267
+	BRA	#.L351
+.L825:
+	CMP.W	#0, 20(R1) { JEQ	.L832
+	MOV.W	62(R1), R13
+	ADDX	90(R1), R13 ; cy
+	MOV.W	R13, 112(R1)
+	MOV.W	64(R1), R12
+	ADDCX	92(R1), R12
+	MOV.W	R12, 114(R1)
+	ADD	#-17408, R13 ; cy
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L360
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L360
+	MOV.W	112(R1), R12
+	MOV.W	114(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R12
+	CMP.W	#324, @R12 { JEQ	.L360
+	CMP.B	#1, R10 { JNE	.L351
+	BRA	#.L360
+.L414:
+	CMP.W	#128, 20(R1) { JNE	.L409
+	MOV.W	R6, R10
+	RPT	#8 { RRUX.W	R10
+	MOV.W	16(R1), 56(R1)
+	MOV.W	R10, 58(R1)
+	MOV.W	56(R1), R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	R10, R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L569
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JHS	.L418
+.L569:
+	MOV.W	56(R1), R12
+	MOV.W	58(R1), R13
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#isImmediateSafeValue
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	CMP.B	#0, R12 { JEQ	.L549
+.L418:
+	AND	#0xff, R10
+	MOV.W	R10, 52(R1)
+	CMP.W	#0, 24(R1) { JEQ	.L439
+	MOV.W	16(R1), R10
+	MOV.W	R10,R12 { MOV.W	#0,R13
+	BRA	#.L771
+.L824:
+	CMP.W	#48, R6 { JEQ	.L408
+	CMP.W	#560, R6 { JNE	.L549
+.L409:
+	CMP.W	#0, 24(R1) { JEQ	.L405
+	BRA	#.L439
+.L494:
+	MOV.W	#4, 86(R1)
+	MOV.W	#0, 88(R1)
+	BRA	#.L307
+.L493:
+	MOV.W	#2, 86(R1)
+	MOV.W	#0, 88(R1)
+	BRA	#.L307
+.L408:
+	MOV.W	16(R1), R13
+	MOV.W	R13, R12 { RPT	#15 { RRAX.W	R13
+	MOV.W	R12, 16(R1)
+	MOV.W	R13, 18(R1)
+	MOV.W	R4, R10
+	ADD	R12, R10 ; cy
+	MOV.W	R10, 120(R1)
+	MOV.W	R5, R10
+	ADDCX	18(R1), R10
+	MOV.W	R10, 122(R1)
+	MOV.W	120(R1), R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	R10, R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L539
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L539
+	MOV.W	120(R1), R12
+	MOV.W	122(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	2(R10), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L539
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L539
+	CMP.W	#0, 24(R1) { JEQ	.L405
+	BRA	#.L770
+.L539:
+	MOV.B	#48, R6
+	MOV.W	#1, 20(R1)
+	BRA	#.L267
+.L831:
+	MOV.W	38(R1), R13
+	CMP.W	#0, R13 { JEQ	.L374
+	BRA	#.L375
+.L832:
+	MOV.W	44(R1), R13
+	MOV.W	R13, R12 { RPT	#15 { RRAX.W	R13
+	MOV.W	R12, 20(R1)
+	MOV.W	R13, 22(R1)
+	ADDX	90(R1), R12 ; cy
+	MOV.W	R12, 108(R1)
+	ADDCX	92(R1), R13
+	MOV.W	R13, 110(R1)
+	MOV.W	R12, R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	110(R1), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L360
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L360
+	MOV.W	108(R1), R12
+	MOV.W	110(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R12
+	CMP.W	#324, @R12 { JEQ	.L360
+	CMP.B	#1, R10 { JNE	.L351
+	BRA	#.L360
+.L827:
+	CMP.W	#0, R12 { JEQ	.L833
+	MOV.W	16(R1), R10
+	AND.B	#255, R10
+	MOV.W	R10,R12 { MOV.W	#0,R13
+	MOV.W	R12, 86(R1)
+	MOV.W	R13, 88(R1)
+	BRA	#.L307
+.L311:
+	MOV.W	56(R1), R13
+	AND.B	#255, R13
+	MOV.W	R13, 86(R1)
+	MOV.W	#0, 88(R1)
+	BRA	#.L307
+.L833:
+	MOV.W	36(R1), 86(R1)
+	MOV.W	38(R1), 88(R1)
+	BRA	#.L437
+.L819:
+	CMP.W	#0, 20(R1) { JNE	.L331
+	MOV.W	16(R1), R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JL	.L782
+	BIT.W	#64, R6 { JNE	.L549
+	MOV.W	16(R1), R10
+	RLAM.A #4, R10 { RRAM.A #4, R10
+	MOV.W	@R10, R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JGE	.L322
+.L783:
+	CMP.W	#0, 24(R1) { JNE	.L549
+	MOV.B	#1, R10
+	BRA	#.L323
+.L818:
+	CMP.W	#0, 20(R1) { JNE	.L318
+	MOV.W	16(R1), R13
+	MOV.W	R13, R12 { RPT	#15 { RRAX.W	R13
+	MOV.W	R12, @R1
+	MOV.W	R13, 2(R1)
+	MOV.W	R4, R10
+	ADD	R12, R10 ; cy
+	MOV.W	R10, 104(R1)
+	MOV.W	R5, R10
+	ADDCX	2(R1), R10
+	MOV.W	R10, 106(R1)
+	MOV.W	104(R1), R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	R10, R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L782
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L782
+	BIT.W	#64, R6 { JNE	.L549
+	MOV.W	104(R1), R12
+	MOV.W	106(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JGE	.L322
+	BRA	#.L783
+.L331:
+	MOV.W	56(R1), R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	58(R1), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L556
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L556
+	MOV.W	60(R1), R12
+	AND.B	#64, R12
+	BIT.W	#64, R6 { JNE	.L834
+	CMP.W	#0, R12 { JEQ	.L322
+	MOV.W	56(R1), R12
+	MOV.W	58(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JGE	.L322
+.L784:
+	CMP.W	#0, 24(R1) { JNE	.L267
+	MOV.W	20(R1), R10
+	BRA	#.L323
+.L318:
+	MOV.W	R4, R13
+	MOV.W	R4, R10
+	ADDX	70(R1), R13 ; cy
+	MOV.W	R13, 96(R1)
+	MOV.W	R5, R12
+	ADDCX	72(R1), R12
+	MOV.W	R12, 98(R1)
+	ADD	#-17408, R13 ; cy
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L556
+	MOV.W	#32767, R10
+	CMP.W	R13, R10 { JLO	.L556
+	MOV.W	60(R1), R12
+	AND.B	#64, R12
+	BIT.W	#64, R6 { JNE	.L835
+	CMP.W	#0, R12 { JEQ	.L322
+	MOV.W	96(R1), R12
+	MOV.W	98(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R12
+	ADD.W	#-17408, R12
+	CMP.W	#0, R12 { JGE	.L322
+	BRA	#.L784
+.L834:
+	CMP.W	#0, R12 { JNE	.L267
+	MOV.W	56(R1), R12
+	MOV.W	58(R1), R13
+.L773:
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	2(R10), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L267
+	MOV.W	#32767, R10
+	CMP.W	R13, R10 { JLO	.L267
+	BRA	#.L322
+.L556:
+	CMP.W	#0, 24(R1) { JNE	.L267
+	BIT.W	#64, R6 { JEQ	.L342
+	BRA	#.L267
+.L835:
+	CMP.W	#0, R12 { JNE	.L267
+	MOV.W	96(R1), R12
+	MOV.W	98(R1), R13
+	BRA	#.L773
+.L821:
+	MOV.B	R6, R12
+	AND.B	#15, R12
+	MOV.B	R12, R10
+	MOV.W	R10, 52(R1)
+	MOV.W	16(R1), 56(R1)
+	MOV.W	R12, 58(R1)
+	MOV.W	R4, R12
+	ADDX	56(R1), R12 ; cy
+	MOV.W	R12, 116(R1)
+	MOV.W	R5, R10
+	ADDCX	58(R1), R10
+	MOV.W	R10, 118(R1)
+	MOV.W	R12, R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	R10, R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L549
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L549
+	MOV.W	116(R1), R12
+	MOV.W	118(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	2(R10), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L549
+	MOV.W	#32767, R10
+	CMP.W	R13, R10 { JLO	.L549
+	MOV.W	56(R1), 70(R1)
+	MOV.W	58(R1), 72(R1)
+	CMP.W	#0, 24(R1) { JEQ	.L544
+.L383:
+	MOV.W	16(R1), R13
+	MOV.W	R13, R12 { RPT	#15 { RRAX.W	R13
+	MOV.W	R12, 16(R1)
+	MOV.W	R13, 18(R1)
+	MOV.W	R4, R10
+	ADD	R12, R10 ; cy
+	MOV.W	R10, 142(R1)
+	MOV.W	R5, R10
+	ADDCX	18(R1), R10
+	MOV.W	R10, 144(R1)
+	MOV.W	142(R1), R12
+	MOV.W	144(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R10
+	MOV.W	R10,R12 { MOV.W	#0,R13
+	BRA	#.L775
+.L388:
+	MOV.B	R6, R12
+	AND.B	#15, R12
+	MOV.B	R12, R10
+	MOV.W	R10, 52(R1)
+	MOV.W	16(R1), 56(R1)
+	MOV.W	R12, 58(R1)
+	MOV.W	56(R1), R13
+	ADD	#-17408, R13 ; cy
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L390
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L390
+	CMP.W	#0, 24(R1) { JEQ	.L757
+.L392:
+	MOV.W	56(R1), R12
+	MOV.W	58(R1), R13
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#cfiCheck
+	AND	#0xff, R12
+	MOV.W	R12, 42(R1)
+	MOV.W	34(R1), 124(R1)
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	BRA	#.L286
+.L822:
+	MOV.B	R6, R12
+	AND.B	#15, R12
+	MOV.B	R12, R10
+	MOV.W	R10, 52(R1)
+	MOV.W	16(R1), 56(R1)
+	MOV.W	R12, 58(R1)
+	MOV.W	56(R1), R13
+	ADD	#-17408, R13 ; cy
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L549
+	MOV.W	#32767, R12
+	CMP.W	R13, R12 { JLO	.L549
+	MOV.W	56(R1), R12
+	MOV.W	58(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R13
+	ADD	#-17408, R13 ; cy
+	MOV.W	2(R10), R12
+	ADDC	#-1, R12
+	CMP.W	#0, R12 { JNE	.L549
+	MOV.W	#32767, R10
+	CMP.W	R13, R10 { JLO	.L549
+	CMP.W	#0, 24(R1) { JNE	.L387
+	MOV.W	124(R1), 34(R1)
+	BRA	#.L757
+.L390:
+	MOV.W	56(R1), R12
+	MOV.W	58(R1), R13
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#isImmediateSafeValue
+	AND	#0xff, R12
+	MOV.W	R12, 40(R1)
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	CMP.W	#0, 24(R1) { JEQ	.L836
+	CMP.W	#0, 40(R1) { JNE	.L392
+	BRA	#.L549
+.L836:
+	MOV.W	56(R1), R12
+	CMP.W	#-972, R12 { JEQ	.L837
+.L566:
+	MOV.W	56(R1), R12
+	CMP.W	#-894, R12 { JEQ	.L838
+.L396:
+	CMP.W	#0, 40(R1) { JNE	.L757
+	BRA	#.L549
+.L820:
+	MOV.W	R6, R12
+	AND.B	#64, R12
+	MOV.W	R12, 34(R1)
+	CMP.W	#0, 20(R1) { JNE	.L347
+	MOV.W	16(R1), R13
+	MOV.W	R13, R12 { RPT	#15 { RRAX.W	R13
+	MOV.W	R12, 16(R1)
+	MOV.W	R13, 18(R1)
+	MOV.W	R4, R10
+	ADD	R12, R10 ; cy
+	MOV.W	R10, 134(R1)
+	MOV.W	R5, R10
+	ADDCX	18(R1), R10
+	MOV.W	R10, 136(R1)
+	MOV.W	134(R1), R12
+	MOV.W	136(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	MOV.W	@R10, R12
+	CMP.W	#0, 34(R1) { JEQ	.L353
+	CLR	R13
+	BRA	#.L769
+.L347:
+	MOV.W	R4, R13
+	ADDX	70(R1), R13 ; cy
+	MOV.W	R13, 138(R1)
+	MOV.W	R5, R12
+	ADDCX	72(R1), R12
+	MOV.W	R12, 140(R1)
+	MOV.W	138(R1), R12
+	MOV.W	140(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	CMP.W	#0, 34(R1) { JEQ	.L354
+	BIT.W	#64, 60(R1) { JNE	.L839
+	MOV.W	@R10, R12
+	MOV.W	2(R10), R13
+	BRA	#.L769
+.L838:
+	MOV.W	58(R1), R12
+	CMP.W	#0, R12 { JNE	.L396
+.L394:
+	MOVX.B	&historyIndex, R12
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	MOVA	R11, 12(R1)
+	MOVA	R14, 8(R1)
+	MOVA	R15, 4(R1)
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 44(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 16(R1)
+	MOV.W	R12, 94(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 20(R1)
+	MOV.W	R12, 126(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 36(R1)
+	MOV.W	R12, 128(R1)
+	MOV.B	#6, R13
+	ADD.W	#5, R12
+	CALLA	#__mspabi_remi
+	MOV.W	R12, 124(R1)
+	MOVA	#instHistory, R10
+	MOV.W	R12, R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	MOVA	12(R1), R11
+	MOVA	8(R1), R14
+	MOVA	4(R1), R15
+	CMP.W	#17028, R12 { JNE	.L549
+	MOV.W	36(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	CMP.W	#-15822, R12 { JNE	.L549
+	MOV.W	20(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	CMP.W	#17152, R12 { JNE	.L549
+	MOV.W	16(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	MOV.W	R12, R13
+	AND.W	#-3968, R13
+	CMP.W	#16384, R13 { JEQ	.L785
+	MOV.W	R12, R13
+	AND.W	#-4096, R13
+	BIT.W	#-4096, R12 { JEQ	.L398
+	CMP.W	#4096, R13 { JNE	.L549
+	RPT	#8 { RRUX.W	R12
+.L785:
+	AND.B	#15, R12
+	CMP.W	#6, R12 { JNE	.L549
+.L398:
+	MOV.W	94(R1), R13
+	RLAM.A #4, R13 { RRAM.A #4, R13
+	MOVA	R13, R12
+	ADDA	R13, R13
+	ADDA	R13, R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	MOV.W	@R12, R12
+	MOV.W	R12, R13
+	AND.W	#-4096, R13
+	CMP.W	#16384, R13 { JEQ	.L840
+	BIT.W	#-8192, R12 { JNE	.L529
+	RRUM.W	#4, R12
+	AND.B	#15, R12
+	MOV.B	R12, R13
+	ADD.B	#-2, R13
+	MOV.B	R13, 16(R1)
+	MOV.B	#1, R13
+	CMP.B	16(R1), R13 { JHS	.L528
+	CMP.B	#12, R12 { JEQ	.L528
+.L529:
+	MOV.B	#2, R13
+	BRA	#.L400
+.L837:
+	MOV.W	58(R1), R12
+	CMP.W	#0, R12 { JNE	.L566
+	BRA	#.L394
+.L840:
+	BIT.W	#16, R12 { JEQ	.L529
+.L528:
+	MOV.B	#4, R13
+.L400:
+	MOV.W	124(R1), R12
+	RLAM.A #4, R12 { RRAM.A #4, R12
+	MOVA	R12, 20(R1)
+	ADDA	R12, R12
+	MOVA	R12, 16(R1)
+	MOVA	20(R1), R12
+	ADDX.A	16(R1), R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	ADDA	#2, R12
+	MOV.W	@R12, 16(R1)
+	MOV.W	2(R12), 18(R1)
+	MOV.W	128(R1), R12
+	RLAM.A #4, R12 { RRAM.A #4, R12
+	MOVA	R12, 36(R1)
+	ADDA	R12, R12
+	MOVA	R12, 20(R1)
+	MOVA	36(R1), R12
+	ADDX.A	20(R1), R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	ADDA	#2, R12
+	MOVA	R12, 36(R1)
+	MOV.W	@R12, 20(R1)
+	MOV.W	2(R12), 22(R1)
+	MOV.W	16(R1), R12
+	ADD	#2, R12 ; cy
+	MOV.W	R12, 124(R1)
+	MOV.W	18(R1), R12
+	ADDC	#0, R12
+	MOV.W	R12, 16(R1)
+	MOV.W	124(R1), R12
+	CMP.W	20(R1), R12 { JNE	.L549
+	MOV.W	16(R1), R12
+	CMP.W	22(R1), R12 { JNE	.L549
+	MOVA	36(R1), R12
+	MOV.W	@R12, 16(R1)
+	MOV.W	2(R12), 18(R1)
+	MOV.W	126(R1), R12
+	RLAM.A #4, R12 { RRAM.A #4, R12
+	MOVA	R12, 36(R1)
+	ADDA	R12, R12
+	MOVA	R12, 20(R1)
+	MOVA	36(R1), R12
+	ADDX.A	20(R1), R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	ADDA	#2, R12
+	MOVA	R12, 36(R1)
+	MOV.W	@R12, 20(R1)
+	MOV.W	2(R12), 22(R1)
+	MOV.W	16(R1), R12
+	ADD	#2, R12 ; cy
+	MOV.W	R12, 124(R1)
+	MOV.W	18(R1), R12
+	ADDC	#0, R12
+	MOV.W	R12, 16(R1)
+	MOV.W	124(R1), R12
+	CMP.W	20(R1), R12 { JNE	.L549
+	MOV.W	16(R1), R12
+	CMP.W	22(R1), R12 { JNE	.L549
+	MOVA	36(R1), R12
+	MOV.W	@R12, 16(R1)
+	MOV.W	2(R12), 18(R1)
+	MOV.W	94(R1), R12
+	RLAM.A #4, R12 { RRAM.A #4, R12
+	MOVA	R12, 36(R1)
+	ADDA	R12, R12
+	MOVA	R12, 20(R1)
+	MOVA	36(R1), R12
+	ADDX.A	20(R1), R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	ADDA	#2, R12
+	MOVA	R12, 36(R1)
+	MOV.W	@R12, 20(R1)
+	MOV.W	2(R12), 22(R1)
+	MOV.W	16(R1), R12
+	ADD	#2, R12 ; cy
+	MOV.W	R12, 94(R1)
+	MOV.W	18(R1), R12
+	ADDC	#0, R12
+	MOV.W	R12, 16(R1)
+	MOV.W	94(R1), R12
+	CMP.W	20(R1), R12 { JNE	.L549
+	MOV.W	16(R1), R12
+	CMP.W	22(R1), R12 { JNE	.L549
+	MOVA	36(R1), R12
+	MOV.W	@R12, 16(R1)
+	MOV.W	2(R12), 18(R1)
+	MOV.W	44(R1), R12
+	RLAM.A #4, R12 { RRAM.A #4, R12
+	MOVA	R12, 36(R1)
+	ADDA	R12, R12
+	MOVA	R12, 20(R1)
+	MOVA	36(R1), R12
+	ADDX.A	20(R1), R12
+	ADDA	R12, R12
+	ADDA	R10, R12
+	ADDA	#2, R12
+	MOV.W	@R12, 20(R1)
+	MOV.W	2(R12), 22(R1)
+	MOV.B	R13,R12 { CLR	R13
+	ADDX	16(R1), R12 ; cy
+	ADDCX	18(R1), R13
+	CMP.W	20(R1), R12 { JNE	.L549
+	CMP.W	22(R1), R13 { JEQ	.L396
+	BRA	#.L549
+.L352:
+	MOV.W	56(R1), R12
+	MOV.W	58(R1), R13
+	PUSH.W	R13 { PUSH.W	R12 { POPM.A	#1, R10
+	CMP.W	#0, 34(R1) { JEQ	.L354
+	MOV.W	@R10, R12
+	BIT.W	#64, 60(R1) { JNE	.L780
+	MOV.W	2(R10), R13
+	BRA	#.L769
+.L839:
+	MOVX.B	@R10,R12 { CLR	R13
+	BRA	#.L769
+.L354:
+	MOV.W	@R10, R10
+	MOV.W	R10,R12 { MOV.W	#0,R13
+	BRA	#.L769
+	.size	verify, .-verify
+	.section	.tcm:codeStart,"ax",@progbits
+	.balign 2
+	.global	secureBoot
+	.type	secureBoot, @function
+secureBoot:
+; start of function
+; attributes: 
+; framesize_regs:     8
+; framesize_locals:   0
+; framesize_outgoing: 0
+; framesize:          8
+; elim ap -> fp       12
+; elim fp -> sp       0
+; saved regs: R6 R10
+	; start of prologue
+	PUSHM.A	#1, R10
+	PUSHM.A	#1, R6
+	; end of prologue
+	MOVX.W	#23168, &WDTCTL
+ ; 111 "core/src_compile/core.c" 1
+	mov #0x43ff, r1
+ ; 0 "" 2
+ ; 116 "core/src_compile/core.c" 1
+	dint { nop
+ ; 0 "" 2
+	BISX.B	#1, &PADIR_L
+	MOV.B	#10, R10
+.L843:
+	XORX.B	#1, &PAOUT_L
+	MOV.W	#10000, R12
+.L842:
+ ; 124 "core/src_compile/core.c" 1
+	nop
+ ; 0 "" 2
+	ADD.W	#-1, R12
+	CMP.W	#0, R12 { JNE	.L842
+	ADD.W	#-1, R10
+	CMP.W	#0, R10 { JNE	.L843
+	BISX.B	#1, &PAOUT_L
+	MOVA	#verify, R6
+	MOV.B	R10, R14
+	MOV.W	#-15361, R13
+	MOV.W	#17408, R12
+	CALLA	R6
+	MOV.B	#1, R14
+	MOV.W	#-15361, R13
+	MOV.W	#17408, R12
+	CALLA	R6
+	ANDX.B	#127, &PBOUT_H
+	BICX.B	#1, &PAOUT_L
+	MOVX.W	#-23280, &FCTL3
+ ; 162 "core/src_compile/core.c" 1
+	nop { eint { nop
+ ; 0 "" 2
+ ; 164 "core/src_compile/core.c" 1
+	mov #0x43ff, r1
+ ; 0 "" 2
+ ; 165 "core/src_compile/core.c" 1
+	mov #0, r8
+ ; 0 "" 2
+	MOVX.W	&key_set, &address_key
+	MOVX.W	&key_set+2, &address_key+2
+	MOVX.W	#0, &address_xor
+	MOVX.W	#0, &address_xor+2
+	MOVX.W	#0, &address_sr
+	MOVX.W	#0, &address_sr+2
+	MOVX.W	R10, &key_cnt
+	MOVX.W	R10, &verify_count
+ ; 184 "core/src_compile/core.c" 1
+	
+	BR #main
+ ; 0 "" 2
+	; start of epilogue
+	POPM.A	#1, r6
+	POPM.A	#1, r10
+	RETA
+	.size	secureBoot, .-secureBoot
+	.section	.tcm:code
+	.balign 2
+	.global	flushBufferToFlash
+	.type	flushBufferToFlash, @function
+flushBufferToFlash:
+; start of function
+; attributes: 
+; framesize_regs:     4
+; framesize_locals:   0
+; framesize_outgoing: 0
+; framesize:          4
+; elim ap -> fp       8
+; elim fp -> sp       0
+; saved regs: R10
+	; start of prologue
+	PUSHM.A	#1, R10
+	; end of prologue
+	MOVX.B	&counterBuffAlwDst, R12
+	MOVX.W	&cfiDataHolder, R10
+	MOVX.W	&cfiDataHolder+2, R11
+	MOVX.W	#-23296, &FCTL3
+	MOVX.W	#-23168, &FCTL1
+	RPT	#9 { RLAX.W	R12
+	BIT.W	#0x8000, R12 { SUBC.W	R13, R13 { INV.W	R13, R13
+	MOV.W	R12, R14
+	ADD	R10, R14 ; cy
+	MOV.W	R13, R15
+	ADDC	R11, R15
+	PUSH.W	R15 { PUSH.W	R14 { POPM.A	#1, R14
+	MOV.B	#0, R13
+.L847:
+	MOV.B	R13, R12
+	RLAM.A	#2, R12
+	MOVA	R12, R10
+	ADDA	R14, R10
+	MOVX.W	alwDst(R12), @R10
+	MOVX.W	alwDst+2(R12), 2(R10)
+	ADD.B	#1, R13
+	AND	#0xff, R13
+	MOVX.W	&counterAlwDst, R12
+	RRUM.W	#1, R12
+	CMP.W	R12, R13 { JLO	.L847
+	BITX.W	#1, &counterAlwDst { JEQ	.L846
+	MOVX.W	#-23232, &FCTL1
+	MOV.W	R13, R12
+	ADD.W	R13, R12
+	RLAM.A #4, R12 { RRAM.A #4, R12
+	ADDA	R12, R12
+	ADDA	R12, R14
+	MOVX.W	alwDst(R12), @R14
+.L846:
+	; start of epilogue
+	POPM.A	#1, r10
+	RETA
+	.size	flushBufferToFlash, .-flushBufferToFlash
+	.global	interruptPcOld
+	.section .bss
+	.balign 2
+	.type	interruptPcOld, @object
+	.size	interruptPcOld, 4
+interruptPcOld:
+	.zero	4
+	.global	interruptWord
+	.balign 2
+	.type	interruptWord, @object
+	.size	interruptWord, 2
+interruptWord:
+	.zero	2
+	.global	cfiDataHolder
+	.balign 2
+	.type	cfiDataHolder, @object
+	.size	cfiDataHolder, 4
+cfiDataHolder:
+	.zero	4
+	.global	historyIndex
+	.type	historyIndex, @object
+	.size	historyIndex, 1
+historyIndex:
+	.zero	1
+	.global	instHistory
+	.balign 2
+	.type	instHistory, @object
+	.size	instHistory, 36
+instHistory:
+	.zero	36
+	.global	counterBuffAlwDst
+	.type	counterBuffAlwDst, @object
+	.size	counterBuffAlwDst, 1
+counterBuffAlwDst:
+	.zero	1
+	.global	counterAlwDst
+	.balign 2
+	.type	counterAlwDst, @object
+	.size	counterAlwDst, 2
+counterAlwDst:
+	.zero	2
+	.global	alwDst
+	.balign 2
+	.type	alwDst, @object
+	.size	alwDst, 512
+alwDst:
+	.zero	512
+	.global	DFI_MIN
+	.section	.rodata
+	.balign 2
+	.type	DFI_MIN, @object
+	.size	DFI_MIN, 4
+DFI_MIN:
+	.long	131072
+	.global	DFI_MAX
+.data
+	.balign 2
+	.type	DFI_MAX, @object
+	.size	DFI_MAX, 4
+DFI_MAX:
+	.long	147456
+	.global	address_key
+	.section .bss
+	.balign 2
+	.type	address_key, @object
+	.size	address_key, 4
+address_key:
+	.zero	4
+	.global	verify_count
+	.balign 2
+	.type	verify_count, @object
+	.size	verify_count, 2
+verify_count:
+	.zero	2
+	.global	launch_cnt
+	.type	launch_cnt, @object
+	.size	launch_cnt, 1
+launch_cnt:
+	.zero	1
+	.global	entryPointBSL
+	.section	.tcm:rodata,"a"
+	.balign 2
+	.type	entryPointBSL, @object
+	.size	entryPointBSL, 2
+entryPointBSL:
+	.short	4098
+	.global	send_value_address
+	.balign 2
+	.type	send_value_address, @object
+	.size	send_value_address, 2
+send_value_address:
+	.short	-230
+	.global	send_xor_address
+	.balign 2
+	.type	send_xor_address, @object
+	.size	send_xor_address, 2
+send_xor_address:
+	.short	-234
+	.global	receive_update_address
+	.balign 2
+	.type	receive_update_address, @object
+	.size	receive_update_address, 2
+receive_update_address:
+	.short	-238
+	.global	read_mov
+	.balign 2
+	.type	read_mov, @object
+	.size	read_mov, 2
+read_mov:
+	.short	-306
+	.global	safe_subcx
+	.balign 2
+	.type	safe_subcx, @object
+	.size	safe_subcx, 2
+safe_subcx:
+	.short	-328
+	.global	safe_subc
+	.balign 2
+	.type	safe_subc, @object
+	.size	safe_subc, 2
+safe_subc:
+	.short	-348
+	.global	safe_subx
+	.balign 2
+	.type	safe_subx, @object
+	.size	safe_subx, 2
+safe_subx:
+	.short	-370
+	.global	safe_sub
+	.balign 2
+	.type	safe_sub, @object
+	.size	safe_sub, 2
+safe_sub:
+	.short	-390
+	.global	safe_daddx
+	.balign 2
+	.type	safe_daddx, @object
+	.size	safe_daddx, 2
+safe_daddx:
+	.short	-412
+	.global	safe_dadd
+	.balign 2
+	.type	safe_dadd, @object
+	.size	safe_dadd, 2
+safe_dadd:
+	.short	-432
+	.global	safe_addcx
+	.balign 2
+	.type	safe_addcx, @object
+	.size	safe_addcx, 2
+safe_addcx:
+	.short	-454
+	.global	safe_addc
+	.balign 2
+	.type	safe_addc, @object
+	.size	safe_addc, 2
+safe_addc:
+	.short	-474
+	.global	safe_addx
+	.balign 2
+	.type	safe_addx, @object
+	.size	safe_addx, 2
+safe_addx:
+	.short	-496
+	.global	safe_add
+	.balign 2
+	.type	safe_add, @object
+	.size	safe_add, 2
+safe_add:
+	.short	-516
+	.global	safe_xorx
+	.balign 2
+	.type	safe_xorx, @object
+	.size	safe_xorx, 2
+safe_xorx:
+	.short	-538
+	.global	safe_xor
+	.balign 2
+	.type	safe_xor, @object
+	.size	safe_xor, 2
+safe_xor:
+	.short	-558
+	.global	safe_movx
+	.balign 2
+	.type	safe_movx, @object
+	.size	safe_movx, 2
+safe_movx:
+	.short	-580
+	.global	safe_mov
+	.balign 2
+	.type	safe_mov, @object
+	.size	safe_mov, 2
+safe_mov:
+	.short	-600
+	.global	safe_reta
+	.balign 2
+	.type	safe_reta, @object
+	.size	safe_reta, 2
+safe_reta:
+	.short	-672
+	.global	safe_reti
+	.balign 2
+	.type	safe_reti, @object
+	.size	safe_reti, 2
+safe_reti:
+	.short	-744
+	.global	safe_ret
+	.balign 2
+	.type	safe_ret, @object
+	.size	safe_ret, 2
+safe_ret:
+	.short	-816
+	.global	safe_calla
+	.balign 2
+	.type	safe_calla, @object
+	.size	safe_calla, 2
+safe_calla:
+	.short	-894
+	.global	safe_call
+	.balign 2
+	.type	safe_call, @object
+	.size	safe_call, 2
+safe_call:
+	.short	-972
+	.global	safe_bra
+	.balign 2
+	.type	safe_bra, @object
+	.size	safe_bra, 2
+safe_bra:
+	.short	-998
+	.global	safe_br
+	.balign 2
+	.type	safe_br, @object
+	.size	safe_br, 2
+safe_br:
+	.short	-1024
+	.global	vectorBottom
+	.balign 2
+	.type	vectorBottom, @object
+	.size	vectorBottom, 4
+vectorBottom:
+	.long	66560
+	.global	vectorTop
+	.balign 2
+	.type	vectorTop, @object
+	.size	vectorTop, 4
+vectorTop:
+	.long	66684
+	.global	ramTop
+	.balign 2
+	.type	ramTop, @object
+	.size	ramTop, 2
+ramTop:
+	.short	17407
+	.global	ramBottom
+	.balign 2
+	.type	ramBottom, @object
+	.size	ramBottom, 2
+ramBottom:
+	.short	9216
+	.global	flashBottom
+	.balign 2
+	.type	flashBottom, @object
+	.size	flashBottom, 2
+flashBottom:
+	.short	17408
+	.global	flashTop
+	.balign 2
+	.type	flashTop, @object
+	.size	flashTop, 4
+flashTop:
+	.long	148479
+	.global	bslBottom
+	.balign 2
+	.type	bslBottom, @object
+	.size	bslBottom, 2
+bslBottom:
+	.short	4096
+	.global	bslTop
+	.balign 2
+	.type	bslTop, @object
+	.size	bslTop, 2
+bslTop:
+	.short	6143
+	.global	writeAddress
+	.balign 2
+	.type	writeAddress, @object
+	.size	writeAddress, 4
+writeAddress:
+	.long	147968
+	.global	elfAddress
+	.balign 2
+	.type	elfAddress, @object
+	.size	elfAddress, 4
+elfAddress:
+	.long	115712
+	.global	appTopROdata
+	.balign 2
+	.type	appTopROdata, @object
+	.size	appTopROdata, 4
+appTopROdata:
+	.long	115711
+	.global	appBottomROdata
+	.balign 2
+	.type	appBottomROdata, @object
+	.size	appBottomROdata, 4
+appBottomROdata:
+	.long	82944
+	.global	appTopText
+	.balign 2
+	.type	appTopText, @object
+	.size	appTopText, 2
+appTopText:
+	.short	-15361
+	.global	appBottomText
+	.balign 2
+	.type	appBottomText, @object
+	.size	appBottomText, 2
+appBottomText:
+	.short	17408
+	.global	appBottomRam
+	.balign 2
+	.type	appBottomRam, @object
+	.size	appBottomRam, 2
+appBottomRam:
+	.short	11264
+	.global	appTopRam
+	.balign 2
+	.type	appTopRam, @object
+	.size	appTopRam, 2
+appTopRam:
+	.short	17407
+	.ident	"GCC: (Mitto Systems Limited - msp430-gcc 9.2.0.50) 9.2.0"
+	.mspabi_attribute 4, 2
+	.mspabi_attribute 6, 2
+	.mspabi_attribute 8, 2
+	.gnu_attribute 4, 2

@@ -1,0 +1,4 @@
+eval $(opam env)
+frama-c -wp -wp-rte -machdep x86_16 check_systems_api.c -wp-timeout 50 -wp-prover cvc4
+
+
