@@ -12,7 +12,7 @@ UInt8 div(UInt8 a, UInt8 b) {
 }
 void main(void) {
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
-    
+    callSendUpdate();
     initUART();
     // Setup leds
     P1DIR |= BIT0;
@@ -31,7 +31,5 @@ void main(void) {
         
     P1OUT |= BIT0; // Red lightS
     __bis_SR_register(GIE); 
-    callSendUpdate();
-    //callSendCount();
     return;
 }

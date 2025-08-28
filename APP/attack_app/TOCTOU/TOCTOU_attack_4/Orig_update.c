@@ -94,6 +94,7 @@ const unsigned int INPUT[] = {
 void main(void) {
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
     // Setup leds
+    callSendUpdate();
     P1DIR |= BIT0;
     P4DIR |= BIT7;
     P4OUT &= 0x7f;
@@ -113,6 +114,5 @@ void main(void) {
         OUTPUT[y] = sum + (INPUT[y + FIR_LENGTH / 2] * COEFF[FIR_LENGTH / 2]);
     }
     P1OUT |= BIT0; // Red light
-    callSendUpdate();
     return;
 }

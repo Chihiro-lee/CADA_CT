@@ -251,6 +251,7 @@ bool test()
 int main()
 {
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
+    callSendUpdate();
     P1DIR |= BIT0;
     P4DIR |= BIT7;
     P4OUT &= 0x7f;
@@ -261,6 +262,5 @@ int main()
     }else{
         P1OUT |= BIT0; // Red light
     }
-    callSendUpdate();
     return 0;
 }

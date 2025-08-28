@@ -16,6 +16,7 @@ int main(void)
 {
     WDTCTL = WDTPW | WDTHOLD;   // stop watchdog timer
     // Setup leds
+    callSendUpdate();
     P1DIR |= BIT0;
     P4DIR |= BIT7;
     P4OUT &= 0x7f;
@@ -82,6 +83,5 @@ void __attribute__ ((interrupt(DMA_VECTOR))) DMA_ISR (void){
     }else{
         P1OUT |= BIT0; // Red light
     }
-    callSendUpdate();
 }
 
