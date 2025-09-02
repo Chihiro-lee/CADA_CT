@@ -1064,14 +1064,19 @@ uint16_t* reg_sr;
 uint16_t* reg_sp;
 uint16_t* dest;
 
-uint16_t reg_r4_value;
-uint32_t reg_r4_addr;
-uint16_t* reg_r4_addr_ptr;
+uint16_t reg_r4_value = 0;
+uint32_t addr_in_reg_r4 = 0;
+uint16_t* ptr_of_addr_in_reg_r4 = (uint16_t *)(&addr_in_reg_r4);
 
-uint32_t DFI_MAX         = 0x024000;
-uint32_t DFI_MIN         = 0x020000;
-uint32_t DFI_MAX_Orig         = 0x024000;
-uint32_t read_DFI_MAX = 0x00024000;
+
+uint16_t* DFI_MAX         = 0x024000;
+uint16_t* DFI_MIN         = 0x020000;
+uint16_t* DFI_MAX_Orig    = 0x024000;
+
+uint8_t* DFI_MAX_send         = 0x024000;
+uint8_t* DFI_MIN_send         = 0x020000;
+uint8_t* DFI_MAX_Orig_send    = 0x024000;
+uint8_t* read_DFI_MAX    = 0x024000;
 uint8_t read_input_bytes[1];
 
 /* *****uart send model***** */
